@@ -18,17 +18,17 @@
         <div class="container ">
              <div class="sidebar">
     <!-- ..........HOME SEARCH........ -->
-              <div class="top-icons">
-                <div class="link-flex">
-                  <img src="./assets/home.png" alt="Home" />
-                  <a href="#">Home</a>
-                </div>
-                <div class="link-flex" id="search-container">
-                  <img src="./assets/search.png" alt="Search" id="search-icon" />
-                  <a href="#">Search</a>
-                  <input type="text" id="search-input" placeholder="Search" />
-                </div>
-              </div>
+    <div class="top-icons">
+      <div class="link-flex" id="homeIcon">
+          <img src="./assets/home.png" alt="Home" />
+          <a href="#">Home</a>
+      </div>
+      <div class="link-flex" id="search-container">
+          <img src="./assets/search.png" alt="Search" id="search-icon" />
+          <a href="#">Search</a><br> </div>
+          <input type="text" id="search-input" placeholder="Search" />
+           <div id="search-suggestions"></div>
+  </div>
  <!-- .............. -->
               <div class="library">
                 <div class="flex-top">
@@ -48,14 +48,23 @@
                 </div>
                 <div class="flex-top">
                   <img src="./assets/search.png" alt="Search" id="search-IMG" />
-                   <input type="text" id="SEARCH-input" placeholder="Search" />
-                  <p>Recents</p>
-                </div>
+                   <input type="text" id="SEARCH-input" placeholder="Search" /></div>
+                
              
    <!-- .........PLAY-LIST.......... -->
-  <div class="albums" id="albums-container">
-    <!-- The dynamically generated content will go here -->
- 
+  
+      <div class="row">
+    <div class="col-md" id="favoritePlaylists-container">
+      <h5 style="text-decoration: underline; text-align: left;">
+        FAVORITES &#x1F499;
+    </h5></div>
+      <!-- The dynamically generated content will go here -->
+      <div id="recPlayContainer" class="col-md">
+      <h5 style="text-decoration: underline; text-align: left;">
+        Recent &#x1F499;
+    </h5>
+      
+ </div>
 </div>
 </div>
  </div>
@@ -69,14 +78,9 @@
       
          <!-- ...NAVBAR... -->
          <script>
-          function goBack() {
-              if (confirm('Are you sure you want to go back?')) {
-                  window.history.back();
-              }
-          }
-      
+        
           function goForward() {
-              if (confirm('Are you sure you want to go forward?')) {
+              if (confirm('Will Show you the next Page')) {
                   window.history.forward();
               }
           }
@@ -100,37 +104,29 @@
  <!-- .....Recently-played.....   -->
 <div class="main-container">
     <!-- Recently Played -->
-    
-        <h3>Recently Played</h3>
-        <a id="showMoreButton" class="showMoreButton">Show More</a>
-        <div id="recentlyPlayedContainer" class="cards-container">
-          <!-- The dynamically generated content will go here -->
-        </div>
-      
-    
-  
-    <!-- Made For You -->
-   
-    
-        <h3>Made For You</h3>
-        <a id="showMoreButton" class="showMoreButton">Show More</a>
-        <div id="madeForYouContainer" class="cards-container">
-          <!-- The dynamically generated content will go here -->
-        </div>
-     
-  
-    <!-- Recommended -->
-   
-     
-        <h3>Recommended</h3>
-        <a id="showMoreButton" class="showMoreButton">Show More</a>
-        <div id="recommendedContainer" class="cards-container">
-          <!-- The dynamically generated content will go here -->
-        </div>
-     
-   
-  
-  <!-- ........footer........      -->
+
+<h3>Play-List</h3>
+<a id="showMoreButtonRecent" class="showMoreButton">Show More</a>
+<div id="recentlyPlayedContainer" class="cards-container">
+  <!-- The dynamically generated content will go here -->
+</div>
+
+
+<!-- Made For You -->
+<h3>Made For You</h3>
+<a id="showMoreButtonMadeForYou" class="showMoreButton">Show More</a>
+<div id="madeForYouContainer" class="cards-container">
+  <!-- The dynamically generated content will go here -->
+</div>
+
+<!-- Recommended -->
+<h3>Recommended</h3>
+<a id="showMoreButtonRecommended" class="showMoreButton">Show More</a>
+<div id="recommendedContainer" class="cards-container">
+  <!-- The dynamically generated content will go here -->
+</div>
+
+     <!-- ........footer........      -->
             <section class="footer-content row-lg>
                 <div class= "col-mg-8">
                  <ul><h3>Company</h3>
@@ -162,7 +158,7 @@
                         <a href="#">Cookies</a>
                     <a href="#">About Ads</a>
                     <a href="#">Accessibility</a>
-                   <span> © 2023 Spotify AB</span>
+                   <span> ©2023 Spotify AB</span>
                    </div>
                   </section>
              </div>
@@ -193,7 +189,7 @@
       
   
   <script src="spotify.js"></script>
-  <script src="recently.js"></script>
+  <script src="playlist.js"></script>
   <script src="recommended.js"></script>
   <script src="madeforyou.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
