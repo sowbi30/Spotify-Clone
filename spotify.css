@@ -220,17 +220,31 @@
     border-radius: 0.5rem;
     padding-bottom: 6rem;
   }
-  
-  .album-flex {
-    margin-bottom: 1rem !important;
+  .link-flex-recplay{
+    margin-bottom: 0.5rem !important;
   }
-  
-  .albums {
-    margin-top: 1rem;
-    z-index: 2;
+  .link-flex-favorite {
+    margin-bottom: 0.5rem !important;
   }
-  
-  .album-cover {
+  .recentlyPlayed col-flex{
+    margin-top: 0.5rem;
+    z-index: 1; 
+  }
+  .favorite col-flex {
+    margin-top: 0.5rem;
+    z-index: 1;
+  }
+.recplay col-flex{
+  margin-top: 0.5rem;
+  z-index: 1;
+}
+
+  .recplay-cover{
+    height: 3rem !important;
+    width: 3rem !important;
+    border-radius: 0.2rem;
+  }
+  .favorite-cover{
     height: 3rem !important;
     width: 3rem !important;
     border-radius: 0.2rem;
@@ -242,11 +256,50 @@
     font-size: 0.8rem;
   }
   
-  .album-name {
+  .favorite-name {
     color: var(--white);
+    margin-left: 0.5rem !important;
     margin-bottom: 0.35rem !important;
-    font-size: 1rem !important;
+    font-size: 0.7rem !important;
   }
+  .recplay-name{
+    color: var(--white);
+    margin-left: 0.5rem !important;
+    margin-bottom: 0.35rem !important;
+    font-size: 0.7rem !important;
+  }
+
+  .favorite-description, .favorite-playlist{
+    color: var(--white);
+    margin-left: 0.5rem !important;
+    margin-bottom: 0.35rem !important;
+    font-size: 0.7rem !important;
+  } 
+   .recplay-description, .recplay-playlist{
+    color: var(--white);
+    margin-left: 0.5rem !important;
+    margin-bottom: 0.35rem !important;
+    font-size: 0.7rem !important;
+   }
+  
+  .bi-x-circle-fill, .link-flex-recplay.bi-x-circle-fill {
+   
+    position: absolute; 
+    top: 0;
+    right: 0; 
+    font-size: 15px;
+    cursor: pointer;
+}
+
+
+.bi-x-circle-fill:hover {
+    color: red;
+}
+
+.link-flex-recplay{
+  position: relative;
+}
+
   
   .navbar {
     position: sticky;
@@ -337,7 +390,7 @@
   
   .timeline-slider {
     margin: 0 10px;
-    width: 40vw;
+    width: 90px;
   }
   
   .volume-slider {
@@ -346,7 +399,7 @@
   }
   #timeline{
   font-size: 30px;
-  padding-left: 5px;
+  padding-left: 3px;
   padding-right: 5px;
   
   }
@@ -358,13 +411,36 @@
   .bi-pause-circle-fill:hover{
     color: red;
   }
-  a.showMoreButton{
+
+  a#showMoreButtonRecplay{
+    margin-left: 1000px;
+    cursor: pointer;
+   }
+   a#showMoreButtonRecplay:hover{
+   text-decoration: underline;
+   }
+  a#showMoreButtonRecent{
    margin-left: 1000px;
    cursor: pointer;
   }
-  a.showMoreButton:hover{
+  a#showMoreButtonRecent:hover{
   text-decoration: underline;
   }
+  a#showMoreButtonMadeForYou{
+    margin-left: 1000px;
+    cursor: pointer;
+   }
+   a#showMoreButtonMadeForYou:hover{
+   text-decoration: underline;
+   }
+   a#showMoreButtonRecommended{
+    margin-left: 1000px;
+    cursor: pointer;
+   }
+   a#showMoreButtonRecommended:hover{
+   text-decoration: underline;
+   }
+    
   
   .timeline-slider:hover,
   .volume-slider:hover {
@@ -378,7 +454,8 @@
   
   .timeline-slider::-webkit-slider-runnable-track,
   .volume-slider::-webkit-slider-runnable-track {
-    height: 4px;
+    height: 2px;
+    width: 70px;
     background: #ddd;
     border: none;
     border-radius: 100px;
@@ -445,17 +522,17 @@
     font-size: 1.2em; 
     transition: color 0.3s;
   }
-  .link-flex album-flex {
+  .link-flex-favorite, .link-flex-recplay{
     list-style-type: none;
   position: relative;
-  padding: 5px 0px 5px 20px;
+  padding: 2px 0px 2px 2px;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
   cursor: pointer;
   transition: .3s linear
   }
-  .link-flex album-flex {
+  .link-flex-favorite, .link-flex-recplay{
   background: rgba(211, 206, 206, 0.1)
   }
   
@@ -464,20 +541,27 @@
     margin-right: 1rem; 
   }
   
-  .bi-play-circle-fill:hover{
-    color: green;
-    opacity: .5s;
-    font-size: 20px;
-    
-  }
-  div .link-flex album-flex{
+
+  .link-flex-favorite, .link-flex-recplay{
     border: 1px white;
   }
   
-  .album-flex {
+  .link-flex-favorite{
     list-style-type: none;
   position: relative;
-  padding: 8px;
+  padding: 4px;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+   }
+
+   .link-flex-recplay{
+    list-style-type: none;
+  position: relative;
+  padding: 4px;
   transition: background-color 0.3s;
   display: flex;
   align-items: center;
@@ -486,14 +570,27 @@
   border-radius: 5px;
    }
   
-   .album-flex:hover {
+   .link-flex-favorite:hover {
       background-color: grey;
   }
-  .album-flex .bi-play-circle-fill {
+  .link-flex-recplay:hover{
+    background-color: grey;
+  }
+  .link-flex-favorite.bi-play-circle-fill{
     display: none;
   }
-  
-  .album-flex:hover .bi-play-circle-fill {
+
+  .link-flex-recplay.bi-play-circle-fill{
+    display: none; 
+    
+  }
+
+  .link-flex-favorite:hover .bi-play-circle-fill{
+    display: inline-block;
+    color: green;
+  }
+
+  .link-flex-recplay:hover .bi-play-circle-fill {
     display: inline-block;
     color: green;
   }
@@ -504,10 +601,10 @@
     border-radius: 3rem;
   }
   
-  /* ......recently played.......... */
+  /* ......playlist .......... */
   
   
-  .recent-card{
+  .recentlyPlayed-card{
     width: 10rem;
     height: 15rem;
     border: 2px solid #fff !important;
@@ -518,16 +615,16 @@
     overflow: hidden;
   }
   
-  .recent-card:hover {
+  .recentlyPlayed-card:hover {
     transform: scale(1.05);
   }
   
-  .recent {
+  .recentlyPlayed {
     position: relative;
     overflow: hidden;
   }
   
-  .recent-cover{
+  .recentlyPlayed-cover{
     width: 90% !important;
     height: 75% !important;
     display: block;
@@ -535,7 +632,7 @@
     padding: 1px;
   }
   
-  .recent .bi-play-circle-fill {
+  .recentlyPlayed .bi-play-circle-fill {
     position: absolute;
     font-size: 3rem !important;
     top: 50%;
@@ -547,36 +644,36 @@
   }
   
   /* Hover effect to show the play icon */
-  .recent:hover .bi-play-circle-fill {
+  .recentlyPlayed:hover .bi-play-circle-fill {
     opacity: 1;
     color: green;
   }
   
   /* Style for the text content under the image */
   
-  .recent .recentlyPlayed-name{
+  .recentlyPlayed .recentlyPlayed-name{
     font-size: larger;
     font-weight: bolder;
     color: grey;
     text-align: center;
   }
   
-  .recent p{
+  .recentlyPlayed p{
     text-align: center;
     color: grey;
   }
   
-  .recent p:hover{
+  .recentlyPlayed p:hover{
     color:#fff;
   }
   
-  .recent-card {
+  .recentlyPlayed-card {
      border: 1px solid #fff;
     border-radius: 15px;
     margin: 10px;
   }
   
-  .recent .col-flex {
+  .recentlyPlayed .col-flex {
     padding: 1rem;
   }
   
@@ -906,10 +1003,15 @@
       flex: 1; 
   
    }
-   .albums{
+   .link-flex-favorite{
     flex: 0 0 50%; 
       margin-right: 0;
    }
+   .link-flex-recplay{
+    flex: 0 0 50%; 
+    margin-right: 0;
+   }
+
    .footer-content{
     flex: 0 0 50%; 
     margin-right: 0;
@@ -936,13 +1038,7 @@
   #login-fields {
     flex-direction: column;
   }
-  
-  
-  
-  
-     
-  
-  
+
   @media only screen and (min-width: 340px) and (max-width: 1023px) {
     body {
       font-size: 14px;
@@ -964,10 +1060,15 @@
       flex: 1; 
   
    }
-   .albums{
+   .link-flex-favorite{
     flex: 0 0 50%; 
       margin-right: 0;
    }
+   .link-flex-recplay{
+    flex: 0 0 50%; 
+    margin-right: 0;
+   }
+
    .footer-content{
     flex: 0 0 20%; 
     margin-right: 0;
@@ -998,9 +1099,33 @@
   #login-fields {
     flex-direction: column;
   }
-  
-  
-  
-     
-  
-  
+  /* ///SEARCH SUGGESTIONS */
+#search-container {
+  position: relative; /* Ensure the parent container is positioned relative or absolute */
+}
+
+#search-suggestions {
+  position: absolute;
+  top: 100%; /* Place the suggestions below the search input */
+  left: 0;
+  z-index: 1000;
+  background-color: #fff; /* Background color for suggestions */
+  border: 1px solid #ccc; /* Border color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift effect */
+  max-height: 200px; /* Max height for scroll if there are many suggestions */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+  width: 100%;
+}
+
+#search-suggestions div {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+#search-suggestions div:hover {
+  background-color: #f1f1f1; /* Background color on hover */
+}
+.bi-suit-heart-fill{
+  background-color: red;
+}
