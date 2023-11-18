@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var timelineSlider = document.querySelector('.timeline-slider');
     var currentTime = document.querySelector('.current-time');
     var totalTime = document.querySelector('.total-time');
+    const showMoreButton = document.getElementById('showMoreButtonRecommended');
+
   
     const recommended = [
         {
@@ -61,16 +63,12 @@ document.addEventListener('DOMContentLoaded', function () {
         i: 'bi bi-play-circle-fill',
         url:"./assets/9.mp3"
         },
-        {name :'HARRIS BGM',
-        description :'Pop hits to keep you fresh!',
-        image: './assets/mix12.jpg',
-        p : `Playlist &#x2022; Spotify`,
-        id :'07',
-        i: 'bi bi-play-circle-fill',
-        url:"./assets/10.mp3"
-        },
+      
     ];
   
+    let initialrecommended = [...recommended];
+    let currentIndex = recommended.length;
+
     function createCard(recommendedItem, container) {
         var cardDiv = document.createElement('div');
         cardDiv.className = 'link-flex-rec-flex rec-card';
@@ -120,11 +118,28 @@ document.addEventListener('DOMContentLoaded', function () {
   
         container.appendChild(cardDiv);
     }
-  
-    // Create cards for Recommended
-    recommended.forEach(function (recommendedItem) {
-        createCard(recommendedItem, recommendedContainer);
+    ///
+    function loadMoreData() {
+        const itemsToAdd = 3;
+
+        for (let i = 0; i < itemsToAdd; i++) {
+            const indexToAdd = i % initialrecommended.length;
+            const itemToAdd = initialrecommended[indexToAdd];
+            recommended.push(itemToAdd);
+            createCard(itemToAdd,recommendedContainer);
+        }
+
+        currentIndex = recommended.length;
+    }
+
+    showMoreButton.addEventListener('click', function () {
+        loadMoreData();
     });
+
+    recommended.forEach(function (item) {
+        createCard(item, recommendedContainer);
+    });
+  
   
     function playAudio(url) {
         audioElement.src = url;
