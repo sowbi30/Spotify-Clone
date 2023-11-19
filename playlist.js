@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const showMoreButton = document.getElementById('showMoreButtonRecent');
     const favoritePlaylistsContainer = document.getElementById('favoritePlaylists-container'); 
     const recPlayContainer = document.getElementById('recPlayContainer');
+    const skipBackwardButton = document.getElementById("skip-backward");
+const skipForwardButton = document.getElementById("skip-forward");
 
     
     const recentlyPlayed = [
@@ -176,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let searchSuggestions = null;
     let initialRecentlyPlayed = [...recentlyPlayed];
     let currentIndex = recentlyPlayed.length;
-
+    let currentTrackIndex = 0;
    
 
     function createCard(recentlyPlayed, container) {
@@ -237,9 +239,9 @@ document.addEventListener('DOMContentLoaded', function () {
   
         playIcon.addEventListener('click', function (event) {
             var clickedButton = event.target;
-  
+        
             if (audioElement.paused) {
-                playAudio(recentlyPlayed.url);
+                playAudio(recentlyPlayed.url, recentlyPlayed.name); // Pass the title here
                 clickedButton.className = 'bi bi-pause-circle-fill play-pause-button';
             } else {
                 pauseAudio();
@@ -430,13 +432,79 @@ function createFavoriteCard(recentlyPlayed, container) {
 
 //audio
 
-function playAudio(url) {
+function updatePlayerUI(track) {
+    totalTimeElement.textContent = formatTime(track.duration);
+}
+function formatTime(seconds) {
+    var minutes = Math.floor(seconds / 60);
+    var remainingSeconds = Math.floor(seconds % 60);
+    return minutes + ':' + (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
+}
+
+function skipBackward() {
+    if (currentTrackIndex > 0) {
+        currentTrackIndex--;
+        loadTrack(currentTrackIndex);
+        playAudio(recentlyPlayed[currentTrackIndex].url, recentlyPlayed[currentTrackIndex].name);
+    }
+}
+// Function to handle skip forward
+function skipForward() {
+    if (currentTrackIndex < recentlyPlayed.length - 1) {
+        currentTrackIndex++;
+        loadTrack(currentTrackIndex);
+        playAudio(recentlyPlayed[currentTrackIndex].url, recentlyPlayed[currentTrackIndex].name);
+    }
+}
+
+// Function to load a track
+function loadTrack(index) {
+    // Implement the logic to load the track based on the provided index
+    // This may include updating UI elements, setting the source for the audio element, etc.
+    // Example:
+    const audioElement = document.getElementById('audio-player');
+    audioElement.src = recentlyPlayed[index].url;
+}
+// Event listener for skip backward button
+skipBackwardButton.addEventListener("click", function () {
+    skipBackward();
+});
+
+// Event listener for skip forward button
+skipForwardButton.addEventListener("click", function () {
+    skipForward();
+});
+
+//play pause...
+// Event listener for play/pause button
+document.getElementById('play-pause').addEventListener('click', function () {
+    togglePlayPause();
+});
+
+// Function to toggle play/pause
+function togglePlayPause() {
+    var audioElement = document.getElementById('audio-player');
+    var playPauseButton = document.getElementById('play-pause');
+
+    if (audioElement.paused) {
+        audioElement.play().catch(error => console.error(error));
+        playPauseButton.className = 'bi bi-pause-circle-fill play-pause-button';
+    } else {
+        audioElement.pause();
+        playPauseButton.className = 'bi bi-play-circle-fill play-pause-button';
+    }
+}
+function playAudio(url, title, imageUrl) {
     audioElement.src = url;
 
     // Use the canplay event to check when the audio is ready to be played
     audioElement.addEventListener('canplay', function () {
         audioElement.play().catch(error => console.error(error));
+        updateSongTitle(title);
+        updateSongImage(imageUrl);
+        triggerHeartAnimation();
     }, { once: true });
+   
 }
     function pauseAudio() {
         audioElement.pause();
@@ -455,8 +523,24 @@ function playAudio(url) {
         var volumeValue = audioElement.volume * 100;
         volumeSlider.value = volumeValue;
     }
-  
-    // Event listener for timeline slider
+    function updateSongTitle(title) {
+        var songTitleElement = document.getElementById('song-title');
+        songTitleElement.textContent = title;
+    }
+       
+        // Function to trigger the heart icon animation
+        function triggerHeartAnimation() {
+            var heartIcon = document.getElementById('heart-icon');
+            
+            // Add the class for the heart icon animation
+            heartIcon.classList.add('jump');
+            
+            // Remove the class after a short delay (adjust as needed)
+            setTimeout(function () {
+                heartIcon.classList.remove('jump');
+            }, 1000); // 1000 milliseconds = 1 second, adjust as needed
+        }
+            // Event listener for timeline slider
     timelineSlider.addEventListener('input', function () {
         var newPosition = timelineSlider.value / 100;
         audioElement.currentTime = newPosition * audioElement.duration;
