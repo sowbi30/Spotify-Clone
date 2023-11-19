@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let searchSuggestions = null;
     let initialmadeForYou = [...madeForYou];
     let currentIndex = madeForYou.length;
-
+    
    
 
     function createCard(madeForYou, container) {
@@ -246,7 +246,7 @@ function createFavoriteCard(madeForYou, container) {
     // Event listener for the delete icon
     deleteIcon.addEventListener('click', function (event) {
         // Remove the playlist from favorites
-        const indexToRemove = favoritePlaylists.findIndex(item => item.id === recentlyPlayed.id);
+        const indexToRemove = favoritePlaylists.findIndex(item => item.id === madeForYou.id);
         if (indexToRemove !== -1) {
             favoritePlaylists.splice(indexToRemove, 1);
             // Remove the corresponding favorite card from the container
@@ -268,66 +268,7 @@ function createFavoriteCard(madeForYou, container) {
 
 
     //search 
-    function displayFilteredResults(filteredItems) {
-        madeForYouContainer.innerHTML = '';
-    
-        filteredItems.forEach(item => {
-            createCard(item, madeForYouContainer);
-        });
-    }
-    
-    function updateSearchSuggestions(query) {
-        if (!searchSuggestions) {
-            searchSuggestions = document.createElement('div');
-            searchSuggestions.id = 'search-suggestions';
-            document.getElementById('search-container').appendChild(searchSuggestions);
-        } else {
-            searchSuggestions.innerHTML = '';
-        }
-    
-        if (query.trim() !== '') {
-            const filteredItems = madeForYou.filter(item =>
-                item.name.toLowerCase().includes(query.toLowerCase())
-            );
-    
-            filteredItems.forEach(item => {
-                const suggestionItem = document.createElement('div');
-                suggestionItem.textContent = item.name;
-    
-                suggestionItem.addEventListener('click', function () {
-                    // Update the search input value with the selected suggestion
-                    searchInput.value = item.name;
-                    // Clear the suggestions
-                    searchSuggestions.innerHTML = '';
-                    // Filter and display the results based on both search input and selected suggestion
-                    const combinedResults = madeForYou.filter(result =>
-                        result.name.toLowerCase().includes(searchInput.value.toLowerCase())
-                    );
-                    displayFilteredResults(combinedResults);
-                });
-    
-                searchSuggestions.appendChild(suggestionItem);
-            });
-    
-            // Display results based on search input
-            displayFilteredResults(filteredItems);
-        } else {
-            // If the query is empty, display all items
-            displayFilteredResults(recentlyPlayed);
-        }
-    }
-    
-    searchInput.addEventListener('input', function () {
-        const query = searchInput.value;
-        updateSearchSuggestions(query);
-    });
-    
-    const searchIcon = document.getElementById('search-icon');
-    searchIcon.addEventListener('click', function () {
-        const query = searchInput.value;
-        updateSearchSuggestions(query);
-    });
-    
+   
 
     //show more
     function loadMoreData() {
@@ -354,14 +295,17 @@ function createFavoriteCard(madeForYou, container) {
 
 //audio
 
-function playAudio(url) {
+function playAudio(url, name) {
     audioElement.src = url;
 
     // Use the canplay event to check when the audio is ready to be played
     audioElement.addEventListener('canplay', function () {
         audioElement.play().catch(error => console.error(error));
+        updateSongTitle(name);
+       
+        triggerHeartAnimation();
     }, { once: true });
-}
+}   
     function pauseAudio() {
         audioElement.pause();
     }
@@ -379,7 +323,25 @@ function playAudio(url) {
         var volumeValue = audioElement.volume * 100;
         volumeSlider.value = volumeValue;
     }
-  
+
+    function updateSongTitle(title) {
+        var songTitleElement = document.getElementById('song-title');
+        songTitleElement.textContent = title;
+        console.log('Updated song title to:', title);
+    }
+          // Function to trigger the heart icon animation
+          function triggerHeartAnimation() {
+            var heartIcon = document.getElementById('heart-icon');
+            
+            // Add the class for the heart icon animation
+            heartIcon.classList.add('jump');
+            
+            // Remove the class after a short delay (adjust as needed)
+            setTimeout(function () {
+                heartIcon.classList.remove('jump');
+            }, 1000); // 1000 milliseconds = 1 second, adjust as needed
+        }
+   
     // Event listener for timeline slider
     timelineSlider.addEventListener('input', function () {
         var newPosition = timelineSlider.value / 100;
