@@ -1,3 +1,3 @@
-demo :https://elegant-cobbler-92b9ee.netlify.app
+DEMO https://spotify-clone-iota-gold.vercel.app/
 
 # Spotify-Clone
