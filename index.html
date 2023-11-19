@@ -56,12 +56,12 @@
       <div class="row">
     <div class="col-md" id="favoritePlaylists-container">
       <h5 style="text-decoration: underline; text-align: left;">
-        FAVORITES &#x1F499;
+        Favorite-List &#x1F499;
     </h5></div>
       <!-- The dynamically generated content will go here -->
       <div id="recPlayContainer" class="col-md">
       <h5 style="text-decoration: underline; text-align: left;">
-        Recent &#x1F499;
+       Recently-Played &#x1F499;
     </h5>
       
  </div>
@@ -145,9 +145,9 @@
                    <li><a href="#"class="list">Free Mobile App</a></li>
                    </ul>
                    <ul class="icon">
-                   <a href="http.instagram.com"><i class="fa-brands fa-square-instagram fa-2x"></i></a>
-                   <a href="http.twitter.com"><i class="fa-brands fa-square-twitter fa-2x"></i></a>
-                   <a href="http.facebook.com"><i class="fa-brands fa-square-facebook fa-2x"></i></a>
+                   <a href="https://www.instagram.com/"><i class="fa-brands fa-square-instagram fa-2x"></i></a>
+                   <a href="https://twitter.com/"><i class="fa-brands fa-square-twitter fa-2x"></i></a>
+                   <a href="https://www.facebook.com/"><i class="fa-brands fa-square-facebook fa-2x"></i></a>
                   </ul>
                  
                  </div>
@@ -164,31 +164,38 @@
              </div>
            </div>
       <!-- volume-controls -->  
-
+      
               <!-- Audio Player -->
           <audio id="audio-player" class="audio-player"></audio>
-
-          <div class="audio-controls">
-              <div class="player-timeline">
-                <i class="bi bi-skip-start-fill"></i>
-                  <span class="current-time">0:00</span>
-                  <input type="range" class="timeline-slider" min="0" max="100" step="1" value="0" style="background: green;" />
-                  <span class="total-time">0:00</span>
-                  <i class="bi bi-skip-end-fill"></i>
-                  
-              </div>
-              <div class="volume-controls">
-                  <img src="./assets/device.png" style="height: 1rem; margin-right: 1rem; opacity: 0.8" alt="Volume" />
-                  <img src="./assets/playlist.png" style="height: 1rem; margin-right: 1rem; opacity: 0.8" alt="Settings" />
-                  <img src="./assets/music.png" style="height: 1rem; margin-right: 1rem; opacity: 0.8" alt="Fullscreen" />
-                  <input type="range" class="volume-slider" min="0" max="100" step="1" value="50" style="background: green;" />
-              </div>
-          </div>
-      </div>
           
+          <div class="audio-controls">
+            <i id="heart-icon" class="bi bi-balloon-heart-fill" style="margin-left: 2rem;"display: inline;"></i>
+            <div id="song-title" style="margin-left: 1rem;">
+                Song Title
+                <i id="heart-icon" class="bi bi-balloon-heart-fill" style="padding: .2rem; display: inline;"></i>
+            </div>
+            <div class="player-timeline">
+                <i class="bi bi-skip-start-fill" id="skip-backward" ></i>
+                <span class="current-time">0:00</span>
+                <input type="range" class="timeline-slider" min="0" max="100" step="1" value="0" style="background: green; width:100%;" />
+                <span class="total-time">0:00</span>
+                
+                <i class="bi bi-skip-end-fill" id="skip-forward" ></i>
+
+                <i class="bi bi-play-circle-fill play-pause-button" id="play-pause" style="
+                margin-left: 2rem; font-size: 30px; cursor: pointer;"></i>
+            </div>
+            <div class="volume-controls">
+                <img src="./assets/device.png" style="height: 1rem; margin-right: 1rem; opacity: 0.8" alt="Volume" />
+                <img src="./assets/playlist.png" style="height: 1rem; margin-right: 1rem; opacity: 0.8" alt="Settings" />
+                <img src="./assets/music.png" style="height: 1rem; margin-right: 1rem; opacity: 0.8" alt="Fullscreen" />
+                <input type="range" class="volume-slider" min="0" max="100" step="1" value="50" style="background: green;" />
+            </div>
+        </div>
+        
       
   
-  <script src="spotify.js"></script>
+ 
   <script src="playlist.js"></script>
   <script src="recommended.js"></script>
   <script src="madeforyou.js"></script>
