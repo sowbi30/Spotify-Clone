@@ -3,12 +3,12 @@
 document.getElementById('search-icon').addEventListener('click', function() {
     var searchInput = document.getElementById('search-input');
     searchInput.style.display = (searchInput.style.display === 'none' || searchInput.style.display === '') ? 'block' : 'none';
-  });
-  
-  document.getElementById('search-IMG').addEventListener('click', function() {
-    var searchInput = document.getElementById('SEARCH-input');
+});
+
+document.getElementById('search-link').addEventListener('click', function() {
+    var searchInput = document.getElementById('search-input');
     searchInput.style.display = (searchInput.style.display === 'none' || searchInput.style.display === '') ? 'block' : 'none';
-  });
+});
   
   //login-user
   document.getElementById('login-icon').addEventListener('click', function() {
@@ -20,10 +20,8 @@ document.getElementById('search-icon').addEventListener('click', function() {
 
 // Event listener for the Home icon
 document.getElementById('homeIcon').addEventListener('click', function (event) {
-    // Prevent the default behavior of the anchor link
-    event.preventDefault();
     
-    // Reload the page
+    event.preventDefault();
     location.reload();
 });
 
@@ -48,24 +46,16 @@ const skipForwardButton = document.getElementById("skip-forward");
         description :'Pop hits to keep you fresh!',
         image: './assets/mix8.jpg',
         p : `Playlist &#x2022; Spotify`,
-        id :'06',
+        id :'01',
         i: 'bi bi-play-circle-fill',
         url:"./assets/6.mp3"
   
         },
         {name :'BTS',
       description :'Pop hits to keep you fresh!',
-      image: './assets/mix6.jpg',
-      p : `Playlist &#x2022; Spotify`,
-      id :'01',
-      i: 'bi bi-play-circle-fill',
-      url:'./assets/1.MP3',
-        },
-      {name :'BTS',
-      description :'Pop hits to keep you fresh!',
       image: './assets/mix7.jpg',
       p : `Playlist &#x2022; Spotify`,
-      id :'02',
+      id :'03',
       i: 'bi bi-play-circle-fill',
       url:"./assets/2.mp3"
       },
@@ -74,7 +64,7 @@ const skipForwardButton = document.getElementById("skip-forward");
       description :'Pop hits to keep you fresh!',
       image: './assets/mix11.jpg',
       p : `Playlist &#x2022; Spotify`,
-      id :'09',
+      id :'04',
       i: 'bi bi-play-circle-fill',
       url:"./assets/9.mp3"
       },
@@ -90,26 +80,16 @@ const skipForwardButton = document.getElementById("skip-forward");
       description :'Pop hits to keep you fresh!',
       image: './assets/mix12.jpg',
       p : `Playlist &#x2022; Spotify`,
-      id :'10',
+      id :'06',
       i: 'bi bi-play-circle-fill',
       url:"./assets/10.mp3"
       },
-     
-           
-      {name :'ARR-HITS',
-      description :'Pop hits to keep you fresh!',
-      image: './assets/mix9.jpg',
-      p : `Playlist &#x2022; Spotify`,
-      id :'07',
-      i: 'bi bi-play-circle-fill',
-      url:"./assets/7.mp3"
-      },
-    
-       {name :'KARTHIK HITS',
+             
+         {name :'KARTHIK HITS',
       description :'Pop hits to keep you fresh!',
       image: './assets/mix13.jpg',
       p : `Playlist &#x2022; Spotify`,
-      id :'11',
+      id :'08',
       i: 'bi bi-play-circle-fill',
       url:"./assets/1.mp3"
       },
@@ -117,7 +97,7 @@ const skipForwardButton = document.getElementById("skip-forward");
       description :'Pop hits to keep you fresh!',
       image: './assets/mix14.jpg',
       p : `Playlist &#x2022; Spotify`,
-      id :'12',
+      id :'09',
       i: 'bi bi-play-circle-fill',
       url:"./assets/2.mp3"
       },
@@ -125,50 +105,27 @@ const skipForwardButton = document.getElementById("skip-forward");
       description :'Pop hits to keep you fresh!',
       image: './assets/mix15.jpg',
       p : `Playlist &#x2022; Spotify`,
-      id :'13',
+      id :'10',
       i: 'bi bi-play-circle-fill',
       url:"./assets/3.mp3"
       },
-      {name :'KARTHIK HITS',
-      description :'Pop hits to keep you fresh!',
-      image: './assets/mix16.jpg',
-      p : `Playlist &#x2022; Spotify`,
-      id :'14',
-      i: 'bi bi-play-circle-fill',
-      url:"./assets/4.mp3"
-      },
-      {name :'SPB HITS',
+          {name :'SPB HITS',
       description :'Pop hits to keep you fresh!',
       image: './assets/mix17.jpg',
       p : `Playlist &#x2022; Spotify`,
-      id :'15',
+      id :'12',
       i: 'bi bi-play-circle-fill',
       url:"./assets/5.mp3"
       },
-      {name :'SPB 80S HITS',
-      description :'Pop hits to keep you fresh!',
-      image: './assets/mix18.jpg',
-      p : `Playlist &#x2022; Spotify`,
-      id :'16',
-      i: 'bi bi-play-circle-fill',
-      url:"./assets/6.mp3"
-      },
-      {name :'SPB 90S HITS',
+         {name :'SPB 90S HITS',
       description :'Pop hits to keep you fresh!',
       image: './assets/mix19.jpg',
       p : `Playlist &#x2022; Spotify`,
-      id :'17',
+      id :'14',
       i: 'bi bi-play-circle-fill',  
       url:"./assets/7.mp3"
       },
-      {name :'SPB LOVE SONGS',
-      description :'Pop hits to keep you fresh!',
-      image: './assets/mix20.jpg',
-      p : `Playlist &#x2022; Spotify`,
-      id :'18',
-      i: 'bi bi-play-circle-fill',
-      url:"./assets/8.mp3"
-      },
+ 
   
     ];
 
@@ -323,7 +280,7 @@ function createFavoriteCard(recentlyPlayed, container) {
 
     // Event listener for the delete icon
     deleteIcon.addEventListener('click', function (event) {
-        // Remove the playlist from favorites
+        
         const indexToRemove = favoritePlaylists.findIndex(item => item.id === recentlyPlayed.id);
         if (indexToRemove !== -1) {
             favoritePlaylists.splice(indexToRemove, 1);
@@ -407,7 +364,7 @@ function createFavoriteCard(recentlyPlayed, container) {
     });
     
 
-    //show more
+     //show more
     function loadMoreData() {
         const itemsToAdd = 3;
 
